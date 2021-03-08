@@ -14,7 +14,7 @@ import marked from 'marked'
         data() {
             return {
                 data: "",
-                urlToFetch: "md/test.md"
+                urlToFetch: "test.md"
             }
         },
         methods: {

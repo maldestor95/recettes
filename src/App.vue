@@ -10,11 +10,14 @@
 
       <v-spacer></v-spacer>
       <v-btn @click="menu='diagramme'"> Diagramme </v-btn>
+      <v-btn @click="menu='recettes'"> Recettes </v-btn>
     </v-app-bar>
 
     <v-main>
       <diagrammeTendance v-if="menu=='diagramme'" />
       <fetchUrl v-if="menu=='initial'" />
+      <recettes  v-if="menu=='recettes'" />
+
     </v-main>
   </v-app>
 </template>
@@ -22,13 +25,15 @@
 <script>
   import diagrammeTendance from './components/diagramme';
   import fetchUrl from './components/fetchurl.vue';
+  import recettes from './components/recettes'
 
   export default {
     name: 'App',
 
     components: {
       diagrammeTendance,
-      fetchUrl
+      fetchUrl,
+      recettes
     },
 
     data: () => ({
