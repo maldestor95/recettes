@@ -1,29 +1,39 @@
 <template>
     <div>
-        {{recetteslist}}
+        <div v-for="recette in recetteslist" :key="recette.id">
+            <a @click='$emit("input",recette)'>{{ recette.title }}</a>
+        </div>
     </div>
 </template>
 
 <script>
+    import yaml from 'js-yaml';
     export default {
+        props: {
+            value: {
+                type: Object,
+                default: ()=>{ return {title:"",link:""}}
+            },
+        },
         data() {
             return {
-                recetteslist: "string"
+                recetteslist: "string",
+                chosenRecipe:this.value
             }
         },
-        mounted () {
-            const url="test.md"
+        mounted() {
+            const url = "recettelist.md"
             var myHeaders = new Headers();
-                var myInit = {
-                    method: 'GET',
-                    headers: myHeaders,
-                    mode: 'cors',
-                    cache: 'default'
-                };
-                let _this=this
-                fetch(url, myInit)
-                    .then(response => response.text())
-                    .then(result => _this.recetteslist = result)
+            var myInit = {
+                method: 'GET',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default'
+            };
+            let _this = this
+            fetch(url, myInit)
+                .then(response => response.text())
+                .then(result => _this.recetteslist = yaml.load(result))
         },
     }
 </script>
