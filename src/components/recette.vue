@@ -36,6 +36,9 @@
                 ingredients:""
             }
         },
+        mounted () {
+            this.getUrl(this.value.link);
+        },
         watch: {
             value(newValue) {
                 this.recipeLink=newValue
