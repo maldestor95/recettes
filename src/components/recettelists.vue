@@ -22,7 +22,7 @@
             }
         },
         mounted() {
-            const url = "recettelist.md"
+            const url = "recettes/recettelist.md"
             var myHeaders = new Headers();
             var myInit = {
                 method: 'GET',

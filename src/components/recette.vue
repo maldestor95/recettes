@@ -1,14 +1,18 @@
 
 <template>
-    <div>
-       <table>
-        <tr v-for="ing in ingredients" :key="ing.id">
-            <td>{{ ing.ingredient }}</td>
-            <td>{{ ing.qty }}</td>
-        </tr>
-       </table>
-        <div v-html="recipe"/>
-    </div>
+    <v-container>
+       <v-row class="d-flex">
+           <v-col class="col-md-2 ingredients">
+            <v-row v-for="ing in ingredients" :key="ing.id">
+                <v-col >{{ ing.ingredient }}</v-col>
+                <v-col>{{ ing.qty }}</v-col>
+            </v-row>
+           </v-col>
+           <v-col class="col-md-10">
+                <div v-html="recipe"/>
+           </v-col>
+       </v-row>
+    </v-container>
 </template>
 <script>
     import marked from 'marked'
@@ -48,7 +52,7 @@
                     cache: 'default'
                 };
                 let _this=this
-                fetch(urlToFetch, myInit)
+                fetch('recettes/'+urlToFetch, myInit)
                     .then(response => response.text())
                     .then(result => {
                         const endYamlPosition=result.indexOf('...')
@@ -60,5 +64,8 @@
     }
 </script>
 <style lang="scss" scoped>
-
+.ingredients {
+    border: black solid 2px;
+    border-radius: 10px;
+}
 </style>

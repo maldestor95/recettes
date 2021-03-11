@@ -2,7 +2,7 @@
     <div>
         <h1> Recettes disponibles</h1>
         <recettelists v-model="chosenRecipe"/>
-        <h1 v-if="chosenRecipe.title!=''"> {{chosenRecipe.title}}</h1>
+        <h1 v-if="chosenRecipe.title!=''" > {{chosenRecipe.title}}</h1>
         <recette v-model="chosenRecipe"/>
     </div>
 </template>
@@ -23,5 +23,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+h1 {
+    text-align: center
+}
 </style>
