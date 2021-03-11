@@ -25,7 +25,7 @@
 <script>
   import diagrammeTendance from './components/diagramme';
   import fetchUrl from './components/fetchurl.vue';
-  import recettes from './components/recettes'
+  import recettes from './features/recette/recettes'
 
   export default {
     name: 'App',
