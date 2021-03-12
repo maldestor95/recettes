@@ -14,7 +14,7 @@
               </template>
               <v-list>
                 <v-list-item>
-                  <v-list-item-title @click="menu='recettes'">recettes</v-list-item-title>
+                  <v-list-item-title @click="menu='recettes'">Recettes</v-list-item-title>
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title @click="menu='initial'">Home</v-list-item-title>
@@ -24,10 +24,8 @@
     </v-app-bar>
 
     <v-main>
-      
       <diagrammeTendance v-if="menu=='diagramme'" />
       <recettes  v-if="menu=='recettes'" />
-
     </v-main>
   </v-app>
 </template>
