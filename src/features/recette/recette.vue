@@ -40,6 +40,7 @@
             this.getUrl(this.value.link);
         },
         watch: {
+            immediate:true,
             value(newValue) {
                 console.log(newValue)
                 this.recipeLink=newValue

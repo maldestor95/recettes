@@ -13,26 +13,28 @@
     </v-app-bar>
 
     <v-main>
-      {{JSON.stringify(this.recipeName)}}
-      {{currentRecette}}
       <recettelists v-model="recipeName" 
       :maxResponseNumber="maxResponseNumber" 
       @choice="choicemade"
       v-if="showRecetteList" />
-      <recettes  v-model="currentRecette" v-if="currentRecette.link!=''"/>
+
+      <div v-if="currentRecette.link!=''">
+        <h1  > {{currentRecette.title}}</h1>
+        <recette v-model="currentRecette"/>
+      </div>
     </v-main>
   </v-app>
 </template>
 
 <script>
-  import recettes from './features/recette/recettes'
+  import recette from './features/recette/recette'
 import Recettelists from './features/recette/recettelists'
   export default {
     name: 'App',
 
     components: {
       // eslint-disable-next-line vue/no-unused-components
-      Recettelists,recettes
+      Recettelists,recette
     },
 
     data: () => ({
