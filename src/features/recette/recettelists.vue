@@ -1,15 +1,8 @@
 <template>
     <div>
-        <v-text-field
-            name="recipeInput"
-            label="Nom de la Recette"
-            v-model="recipeName"
-            clearable
-        ></v-text-field>
         <div v-for="recette in recetteslistfiltered" :key="recette.id">
             <a @click="selectRecipe(recette)">{{ recette.title }}</a>
         </div>
-
     </div>
 </template>
 
@@ -21,6 +14,10 @@
                 type: Object,
                 default: ()=>{ return {title:"",link:""}}
             },
+            maxResponseNumber: {
+                type:Number,
+                default: 10
+            }
         },
         data() {
             return {
@@ -51,13 +48,12 @@
         },
         computed: {
             recetteslistfiltered() {
-                const maxListLength= 5
+                const maxListLength= this.maxResponseNumber
+                if (this.value.title==null||this.value.title==undefined||this.value.title=="") return this.recetteslist.slice(0,maxListLength)
 
-                if (this.recipeName==null|undefined) return this.recetteslist.slice(0,maxListLength)
-
-                let convertRecipNameToFilter=this.recipeName[0].toUpperCase()
-                for (let index = 1; index < this.recipeName.length; index++) {
-                    convertRecipNameToFilter+= '(.*)'+this.recipeName[index].toUpperCase()
+                let convertRecipNameToFilter=this.value.title[0].toUpperCase()
+                for (let index = 1; index < this.value.title.length; index++) {
+                    convertRecipNameToFilter+= '(.*)'+this.value.title[index].toUpperCase()
                 }
                 const regexFilter= new RegExp(convertRecipNameToFilter)
                
