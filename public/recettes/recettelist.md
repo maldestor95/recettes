@@ -1,9 +1,5 @@
 ---
-- title: Recette
-  link: test.md
-- title: Recette2
-  link: test2.md
-- title: Recette3
-  link: test2.md
+- title: Muffin-topped winter beef Stew
+  link: Muffin-topped winter beef Stew.md
 - title: Bar aux petits légumes
   link: baraupetitlegume.md

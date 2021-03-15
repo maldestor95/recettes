@@ -2,6 +2,7 @@
     <div>
         <h1> Recettes disponibles</h1>
         <recettelists v-model="chosenRecipe"/>
+        
         <div v-if="chosenRecipe.title!=''">
             <h1  > {{chosenRecipe.title}}</h1>
             <recette v-model="chosenRecipe"/>

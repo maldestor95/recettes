@@ -6,10 +6,6 @@
             v-model="recipeName"
             clearable
         ></v-text-field>
-        <!-- <div v-for="recette in recetteslist" :key="recette.id">
-            <a @click="selectRecipe(recette)">{{ recette.title }}</a>
-        </div>
-        <p>--------</p> -->
         <div v-for="recette in recetteslistfiltered" :key="recette.id">
             <a @click="selectRecipe(recette)">{{ recette.title }}</a>
         </div>
