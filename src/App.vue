@@ -7,15 +7,19 @@
       <v-text-field
             name="recipeInput"
             label="Nom de la Recette"
-            v-model="recipeName.title"
+            v-model="recipeName"
             clearable
         ></v-text-field>  
     </v-app-bar>
 
     <v-main>
       {{JSON.stringify(this.recipeName)}}
-      <recettelists v-model="recipeName" :maxResponseNumber="maxResponseNumber" v-if="showRecetteList"/>
-      <recettes  v-model="recipeName" v-if="recipeName.link!=''"/>
+      {{currentRecette}}
+      <recettelists v-model="recipeName" 
+      :maxResponseNumber="maxResponseNumber" 
+      @choice="choicemade"
+      v-if="showRecetteList" />
+      <recettes  v-model="currentRecette" v-if="currentRecette.link!=''"/>
     </v-main>
   </v-app>
 </template>
@@ -27,18 +31,28 @@ import Recettelists from './features/recette/recettelists'
     name: 'App',
 
     components: {
+      // eslint-disable-next-line vue/no-unused-components
       Recettelists,recettes
     },
 
     data: () => ({
-      menu: "recettes",
-      recipeName:{title:null,link:''},
+      recipeName:'',
+      recetteList:null,
+      currentRecette:{title:null,link:''},
       maxResponseNumber:10,
       showRecetteList:true
     }),
     watch: {
       recipeName(newValue) { // force refresh of recipeName if cleared
         if (newValue.title=="") this.recipeName={title:null,link:''}
+      }
+    },
+    methods: {
+      choicemade(e) {
+        // this.$nextTick(function () {
+        // console.log(this.$el.textContent) // => 'mis à jour'
+          this.currentRecette=e
+      // })
       }
     },
   };

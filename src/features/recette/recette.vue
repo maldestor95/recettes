@@ -41,6 +41,7 @@
         },
         watch: {
             value(newValue) {
+                console.log(newValue)
                 this.recipeLink=newValue
                 this.getUrl(this.recipeLink.link)
             }

@@ -11,8 +11,8 @@
     export default {
         props: {
             value: {
-                type: Object,
-                default: ()=>{ return {title:"",link:""}}
+                type: String,
+                default: ""
             },
             maxResponseNumber: {
                 type:Number,
@@ -42,23 +42,23 @@
         },
         methods: {
             selectRecipe(recette) {
-                this.$emit("input",recette)
+                this.$emit("choice",recette)
                 this.recipeName=recette.title
             }
         },
         computed: {
             recetteslistfiltered() {
                 const maxListLength= this.maxResponseNumber
-                if (this.value.title==null||this.value.title==undefined||this.value.title=="") return this.recetteslist.slice(0,maxListLength)
+                if (this.value=="") return this.recetteslist.slice(0,maxListLength)
 
-                let convertRecipNameToFilter=this.value.title[0].toUpperCase()
-                for (let index = 1; index < this.value.title.length; index++) {
-                    convertRecipNameToFilter+= '(.*)'+this.value.title[index].toUpperCase()
+                let convertRecipNameToFilter=this.value[0].toUpperCase()
+                for (let index = 1; index < this.value.length; index++) {
+                    convertRecipNameToFilter+= '(.*)'+this.value[index].toUpperCase()
                 }
                 const regexFilter= new RegExp(convertRecipNameToFilter)
                
                 const FullFilteredList= this.recetteslist.filter(item=>{
-                    console.log (item.title, regexFilter.test(item.title.toUpperCase()))
+                    // console.log (item.title, regexFilter.test(item.title.toUpperCase()))
                     return regexFilter.test(item.title.toUpperCase())
                 })
                 return FullFilteredList.slice(0,maxListLength)
