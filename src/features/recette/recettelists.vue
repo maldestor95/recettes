@@ -49,7 +49,8 @@
         computed: {
             recetteslistfiltered() {
                 const maxListLength= this.maxResponseNumber
-                if (this.value=="") return this.recetteslist.slice(0,maxListLength)
+                console.log(this.value)
+                if (this.value==""||this.value==null) return this.recetteslist.slice(0,maxListLength)
 
                 let convertRecipNameToFilter=this.value[0].toUpperCase()
                 for (let index = 1; index < this.value.length; index++) {

@@ -2,22 +2,25 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <v-img src="cuttlery.svg" height="30" max-width="30" contain></v-img>
-      <v-btn @click="showRecetteList=!showRecetteList">list</v-btn>
+      <v-btn @click="showlist">search</v-btn>
       <v-spacer></v-spacer>
       <v-text-field
             name="recipeInput"
             label="Nom de la Recette"
             v-model="recipeName"
             clearable
+            @keydown="showRecetteList=true"
+            v-show="showRecetteList"
         ></v-text-field>  
     </v-app-bar>
 
     <v-main>
-      <recettelists v-model="recipeName" 
-      :maxResponseNumber="maxResponseNumber" 
-      @choice="choicemade"
-      v-if="showRecetteList" />
-
+      <div v-show="showRecetteList">
+        <recettelists v-model="recipeName" 
+        :maxResponseNumber="maxResponseNumber" 
+        @choice="choicemade"
+        />
+      </div>
       <div v-if="currentRecette.link!=''">
         <h1  > {{currentRecette.title}}</h1>
         <recette v-model="currentRecette"/>
@@ -33,7 +36,6 @@ import Recettelists from './features/recette/recettelists'
     name: 'App',
 
     components: {
-      // eslint-disable-next-line vue/no-unused-components
       Recettelists,recette
     },
 
@@ -51,10 +53,12 @@ import Recettelists from './features/recette/recettelists'
     },
     methods: {
       choicemade(e) {
-        // this.$nextTick(function () {
-        // console.log(this.$el.textContent) // => 'mis à jour'
           this.currentRecette=e
-      // })
+          this.showRecetteList=false
+      },
+      showlist(){
+        this.showRecetteList=!this.showRecetteList
+        this.recipeName=''
       }
     },
   };

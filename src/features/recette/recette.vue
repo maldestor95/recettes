@@ -1,14 +1,14 @@
 
 <template>
-    <v-container>
+    <v-container fluid>
        <v-row class="d-flex">
-           <v-col class="col-md-2 ingredients">
+           <v-col cols="12" md="4" class="ingredients">
             <v-row v-for="ing in ingredients" :key="ing.id">
                 <v-col >{{ ing.ingredient }}</v-col>
                 <v-col>{{ ing.qty }}</v-col>
             </v-row>
            </v-col>
-           <v-col class="col-md-10">
+           <v-col md="8" class="process">
                 <div v-html="recipe"/>
            </v-col>
        </v-row>
@@ -70,7 +70,11 @@
 </script>
 <style lang="scss" scoped>
 .ingredients {
-    border: black solid 2px;
+    border: black dashed 0.5px;
+    border-radius: 10px;
+}
+.process {
+    border: black dashed 0.5px;
     border-radius: 10px;
 }
 </style>
